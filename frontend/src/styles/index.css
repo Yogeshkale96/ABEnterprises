@@ -1,0 +1,52 @@
+@import 'tailwindcss';
+
+@theme {
+  /* AB ENTERPRISES approved brand palette */
+  --color-navy-900: #071b3a;
+  --color-navy-800: #0b2d59;
+  --color-navy-950: #04152e;
+  --color-blue-700: #1677c8;
+  --color-blue-500: #38bdf8;
+  --color-cyan-400: #38bdf8;
+  --color-surface: #f8fafc;
+  --color-surface-blue: #eaf6ff;
+  --color-ink: #071b3a;
+  --color-ink-soft: #64748b;
+  --color-line: #d8e6f2;
+  --color-accent-yellow: #f5a900;
+  --color-accent-orange: #e49a00;
+  --color-success: #16a34a;
+  --color-error: #dc2626;
+
+  --font-sans: 'Segoe UI', system-ui, -apple-system, Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+  --shadow-card: 0 4px 20px rgba(11, 45, 92, 0.08);
+  --shadow-card-hover: 0 12px 32px rgba(11, 45, 92, 0.16);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+body {
+  @apply bg-white text-ink font-sans antialiased;
+  margin: 0;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-blue-500);
+  outline-offset: 2px;
+  border-radius: 2px;
+}

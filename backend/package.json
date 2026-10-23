@@ -1,0 +1,34 @@
+{
+  "name": "ab-enterprises-backend",
+  "version": "1.0.0",
+  "description": "AB Enterprises Private Limited — Express + MySQL API",
+  "main": "src/server.js",
+  "scripts": {
+    "dev": "node --watch src/server.js",
+    "start": "node src/server.js",
+    "test": "echo \"No tests configured yet\" && exit 0",
+    "lint": "echo \"No linter configured for backend\" && exit 0",
+    "db:migrate": "node src/database/migrations/migrate.js",
+    "db:seed": "node src/database/seeds/seed.js"
+  },
+  "keywords": [],
+  "author": "AB Enterprises Private Limited",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.6",
+    "dotenv": "^18.0.8",
+    "express": "^5.3.0",
+    "express-rate-limit": "^8.7.1",
+    "helmet": "^8.3.0",
+    "jsonwebtoken": "^9.0.3",
+    "mysql2": "^3.24.6",
+    "winston": "^3.19.0",
+    "zod": "^4.6.7"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.14"
+  }
+}
