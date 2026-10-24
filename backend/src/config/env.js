@@ -21,11 +21,18 @@ const env = {
     password: process.env.DB_PASSWORD || '',
   },
   jwt: {
-    secret: process.env.JWT_SECRET || 'dev-only-insecure-secret-change-me',
-    expiresIn: process.env.JWT_EXPIRES_IN || '2h',
+    // Access token — JWT_ACCESS_* preferred, JWT_SECRET kept for backward compat.
+    secret: process.env.JWT_ACCESS_SECRET || process.env.JWT_SECRET || 'dev-only-insecure-secret-change-me',
+    expiresIn: process.env.JWT_ACCESS_EXPIRES_IN || process.env.JWT_EXPIRES_IN || '15m',
+    issuer: process.env.JWT_ISSUER || 'abenterprises-api',
+    audience: process.env.JWT_AUDIENCE || 'abenterprises-client',
+    // Refresh token — separate secret, longer-lived, rotated on every use.
+    refreshSecret: process.env.JWT_REFRESH_SECRET || 'dev-only-insecure-refresh-secret-change-me',
+    refreshExpiresIn: process.env.JWT_REFRESH_EXPIRES_IN || '7d',
   },
   cookie: {
     name: 'abe_admin_token',
+    refreshName: 'abe_admin_refresh',
     secure: process.env.NODE_ENV === 'production',
   },
 };

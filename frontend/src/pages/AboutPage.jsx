@@ -248,7 +248,7 @@ export default function AboutPage() {
                 Contact Our Team
               </Button>
             </div>
-            <ul className="mt-5 flex flex-nowrap items-center gap-x-6">
+            <ul className="mt-5 flex flex-wrap items-center gap-x-6 gap-y-2.5">
               {TRUST.map(({ Icon, label }) => (
                 <li key={label} className="flex shrink-0 items-center gap-2 whitespace-nowrap text-xs font-semibold text-white/80">
                   <span className="flex h-7 w-7 items-center justify-center rounded-full border border-cyan-400/40 bg-cyan-400/10 text-cyan-400">

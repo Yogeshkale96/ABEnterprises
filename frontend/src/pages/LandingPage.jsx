@@ -36,7 +36,7 @@ export default function LandingPage() {
         }
 
   return (
-    <div className="relative flex h-dvh flex-col overflow-hidden bg-navy-900">
+    <div className="relative flex min-h-dvh flex-col overflow-hidden bg-navy-900">
       {/* Decorative tech background */}
       <div className="pointer-events-none absolute inset-0" aria-hidden="true">
         <div className="absolute -left-32 -top-32 h-96 w-96 rounded-full bg-blue-700/20 blur-3xl" />

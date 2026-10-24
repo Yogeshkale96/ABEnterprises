@@ -26,7 +26,7 @@ export default function ConfirmDialog({ open, title, message, confirmLabel = 'Co
       onClick={onCancel}
     >
       <div
-        className="w-full max-w-md rounded-2xl bg-white p-6 shadow-card-hover"
+        className="max-h-[90dvh] w-full max-w-md overflow-y-auto rounded-2xl bg-white p-6 shadow-card-hover"
         onClick={(e) => e.stopPropagation()}
       >
         <h3 id="confirm-title" className="text-lg font-bold text-navy-900">

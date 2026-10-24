@@ -7,4 +7,15 @@ const loginSchema = z.object({
   }),
 });
 
-module.exports = { loginSchema };
+const changePasswordSchema = z.object({
+  body: z.object({
+    currentPassword: z.string().min(1, 'Current password is required').max(128),
+    newPassword: z
+      .string()
+      .min(10, 'New password must be at least 10 characters')
+      .max(128)
+      .refine((v) => /[a-z]/.test(v) && /[A-Z]/.test(v) && /\d/.test(v), 'New password must include uppercase, lowercase and a number'),
+  }),
+});
+
+module.exports = { loginSchema, changePasswordSchema };

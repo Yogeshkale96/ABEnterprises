@@ -7,6 +7,7 @@ const corsOptions = require('./config/cors');
 const apiRoutes = require('./routes');
 const notFound = require('./middleware/notFound');
 const errorHandler = require('./middleware/errorHandler');
+const csrfGuard = require('./middleware/csrfGuard');
 const { apiLimiter } = require('./middleware/rateLimiter');
 
 const app = express();
@@ -20,7 +21,7 @@ app.use(express.json({ limit: '100kb' }));
 app.use(express.urlencoded({ extended: false, limit: '100kb' }));
 app.use(cookieParser());
 
-app.use('/api/v1', apiLimiter, apiRoutes);
+app.use('/api/v1', apiLimiter, csrfGuard, apiRoutes);
 
 app.use(notFound);
 app.use(errorHandler);

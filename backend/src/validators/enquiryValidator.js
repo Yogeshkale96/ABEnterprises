@@ -114,4 +114,40 @@ const updateStatusSchema = z.object({
   body: z.object({ status: z.enum(['new', 'in_progress', 'resolved', 'closed']) }),
 });
 
-module.exports = { enquirySchema, updateStatusSchema, SERVICE_LABELS };
+const enquiryIdSchema = z.object({
+  params: z.object({ id: z.coerce.number().int().positive() }),
+});
+
+const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
+const listEnquiriesSchema = z.object({
+  query: z.object({
+    page: z.coerce.number().int().positive().optional(),
+    limit: z.coerce.number().int().positive().max(100).optional(),
+    status: z.enum(['new', 'in_progress', 'resolved', 'closed']).optional(),
+    type: z.enum(['contact', 'quote', 'amc']).optional(),
+    search: z.string().trim().max(120).optional(),
+    from: z.string().regex(DATE_RE, 'from must be YYYY-MM-DD').optional(),
+    to: z.string().regex(DATE_RE, 'to must be YYYY-MM-DD').optional(),
+  }),
+});
+
+const addNoteSchema = z.object({
+  params: z.object({ id: z.coerce.number().int().positive() }),
+  body: z.object({
+    note: z
+      .string()
+      .trim()
+      .min(1, 'Note cannot be empty')
+      .max(2000, 'Note cannot exceed 2,000 characters')
+      .refine((v) => !CONTROL_CHARS.test(v), 'Note contains invalid characters'),
+  }),
+});
+
+module.exports = {
+  enquirySchema,
+  updateStatusSchema,
+  enquiryIdSchema,
+  listEnquiriesSchema,
+  addNoteSchema,
+  SERVICE_LABELS,
+};

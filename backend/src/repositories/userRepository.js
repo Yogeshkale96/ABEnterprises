@@ -20,6 +20,14 @@ const userRepository = {
     );
     return rows[0] || null;
   },
+
+  async updatePassword(id, passwordHash) {
+    const [result] = await pool.query(
+      'UPDATE users SET password_hash = ? WHERE id = ?',
+      [passwordHash, id]
+    );
+    return result.affectedRows > 0;
+  },
 };
 
 module.exports = userRepository;

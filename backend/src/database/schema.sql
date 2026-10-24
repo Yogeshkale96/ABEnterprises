@@ -145,6 +145,32 @@ CREATE TABLE IF NOT EXISTS enquiry_items (
     REFERENCES enquiries (id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
+CREATE TABLE IF NOT EXISTS refresh_tokens (
+  id          INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  user_id     INT UNSIGNED NOT NULL,
+  token_hash  CHAR(64) NOT NULL,
+  expires_at  DATETIME NOT NULL,
+  revoked_at  DATETIME NULL,
+  created_at  TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (id),
+  UNIQUE KEY uq_refresh_tokens_hash (token_hash),
+  KEY idx_refresh_tokens_user (user_id),
+  CONSTRAINT fk_refresh_tokens_user FOREIGN KEY (user_id)
+    REFERENCES users (id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
+CREATE TABLE IF NOT EXISTS enquiry_notes (
+  id           INT UNSIGNED NOT NULL AUTO_INCREMENT,
+  enquiry_id   INT UNSIGNED NOT NULL,
+  note         TEXT NOT NULL,
+  author       VARCHAR(120),
+  created_at   TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (id),
+  KEY idx_enquiry_notes_enquiry (enquiry_id),
+  CONSTRAINT fk_enquiry_notes_enquiry FOREIGN KEY (enquiry_id)
+    REFERENCES enquiries (id) ON DELETE CASCADE
+) ENGINE=InnoDB;
+
 CREATE TABLE IF NOT EXISTS articles (
   id           INT UNSIGNED NOT NULL AUTO_INCREMENT,
   title        VARCHAR(200) NOT NULL,

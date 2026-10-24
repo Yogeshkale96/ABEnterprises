@@ -5,7 +5,7 @@ import HeroControls from './HeroControls.jsx'
 import { heroSlides, HERO_SLIDE_COUNT } from '../../data/heroSlides.js'
 import { useReducedMotionPreference } from '../../hooks/useReducedMotionPreference.js'
 
-const AUTOPLAY_MS = 5500
+const AUTOPLAY_MS = 4500
 const SWIPE_THRESHOLD = 60
 
 /**
@@ -38,6 +38,15 @@ export default function HeroCarousel() {
     []
   )
 
+  // Preload every slide image up front — slides only mount when shown, so
+  // without this each transition would start downloading mid-wipe.
+  useEffect(() => {
+    heroSlides.forEach((s) => {
+      const img = new Image()
+      img.src = s.image
+    })
+  }, [])
+
   // Continuous autoplay on a fixed interval; restarts after any manual change.
   useEffect(() => {
     if (HERO_SLIDE_COUNT < 2) return undefined
@@ -63,7 +72,7 @@ export default function HeroCarousel() {
 
   return (
     <section
-      className="relative h-[500px] overflow-hidden bg-navy-950 sm:h-[460px] lg:h-[500px]"
+      className="relative h-[620px] overflow-hidden bg-navy-950 sm:h-[460px] lg:h-[500px]"
       role="region"
       aria-roledescription="carousel"
       aria-label="AB Enterprises highlights"

@@ -59,12 +59,12 @@ export default function Navbar() {
         <Logo to="/home" className="h-16 md:h-16 lg:h-[72px]" />
 
         {/* Desktop search — sits just left of the nav tabs */}
-        <div className="ml-auto mr-4 hidden min-w-0 w-[260px] md:block lg:mr-6 lg:w-[300px]">
+        <div className="ml-auto mr-4 hidden min-w-0 w-[260px] md:block lg:mr-6">
           <SearchBar />
         </div>
 
         {/* Desktop nav links */}
-        <ul className="hidden items-center gap-2 lg:flex">
+        <ul className="hidden items-center gap-2 xl:flex">
           {mainNav.map((item) =>
             item.dropdown ? (
               <li
@@ -139,7 +139,7 @@ export default function Navbar() {
         {/* Mobile: search icon handled inside mobile menu; burger here */}
         <button
           type="button"
-          className="ml-auto inline-flex h-10 w-10 items-center justify-center rounded-lg text-white hover:bg-white/10 lg:hidden"
+          className="ml-auto inline-flex h-10 w-10 items-center justify-center rounded-lg text-white hover:bg-white/10 xl:hidden"
           aria-expanded={mobileOpen}
           aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
           onClick={() => setMobileOpen((v) => !v)}
@@ -155,7 +155,7 @@ export default function Navbar() {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.22, ease: 'easeOut' }}
-            className="overflow-hidden border-t border-line bg-white lg:hidden"
+            className="max-h-[calc(100dvh-4rem)] overflow-y-auto border-t border-line bg-white xl:hidden"
           >
             <MobileMenu onNavigate={() => setMobileOpen(false)} />
           </motion.div>

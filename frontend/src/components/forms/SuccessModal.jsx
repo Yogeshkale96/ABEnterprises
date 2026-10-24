@@ -45,7 +45,7 @@ export default function SuccessModal({ open, title, message, reference, onClose 
         aria-modal="true"
         aria-labelledby="success-modal-title"
         aria-describedby="success-modal-desc"
-        className="w-full max-w-md rounded-2xl bg-white p-8 text-center shadow-2xl"
+        className="max-h-[90dvh] w-full max-w-md overflow-y-auto rounded-2xl bg-white p-8 text-center shadow-2xl"
       >
         <span className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-blue-500/10">
           <CheckCircle2 className="h-8 w-8 text-blue-600" aria-hidden="true" />

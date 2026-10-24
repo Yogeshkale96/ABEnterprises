@@ -12,7 +12,14 @@ function authenticate(req, res, next) {
   if (!token) return next(new AppError('Authentication required', 401, 'UNAUTHENTICATED'));
 
   try {
-    req.user = jwt.verify(token, env.jwt.secret);
+    const payload = jwt.verify(token, env.jwt.secret, {
+      issuer: env.jwt.issuer,
+      audience: env.jwt.audience,
+    });
+    if (payload.type !== 'access') {
+      return next(new AppError('Invalid or expired session', 401, 'UNAUTHENTICATED'));
+    }
+    req.user = payload;
     return next();
   } catch {
     return next(new AppError('Invalid or expired session', 401, 'UNAUTHENTICATED'));

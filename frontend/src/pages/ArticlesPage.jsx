@@ -24,7 +24,7 @@ export default function ArticlesPage() {
     <>
       <section className="bg-navy-900 py-12 text-white">
         <Container>
-          <nav aria-label="Breadcrumb" className="flex items-center gap-1.5 text-sm text-white/60">
+          <nav aria-label="Breadcrumb" className="flex flex-wrap items-center gap-1.5 text-sm text-white/60">
             <Link to="/home" className="hover:text-cyan-400">Home</Link>
             <ChevronRight className="h-3.5 w-3.5" aria-hidden="true" />
             <span className="text-white">Latest News &amp; IT Tips</span>

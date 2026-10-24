@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
-import apiClient from '../../services/apiClient.js'
+import apiClient, { refreshSession } from '../../services/apiClient.js'
+import { isNative, tokenStore } from '../../services/tokenStore.js'
 import { AuthContext } from './authContext.js'
 
 export function AuthProvider({ children }) {
@@ -7,23 +8,43 @@ export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    apiClient
-      .get('/auth/me')
-      .then((r) => setUser(r.data.user))
-      .catch(() => setUser(null))
-      .finally(() => setLoading(false))
+    let cancelled = false
+    const bootstrap = async () => {
+      try {
+        const r = await apiClient.get('/auth/me')
+        if (!cancelled) setUser(r.data.user)
+      } catch {
+        // Access token may just be expired — try rotating via refresh token.
+        try {
+          const u = await refreshSession()
+          if (!cancelled) setUser(u)
+        } catch {
+          if (!cancelled) setUser(null)
+        }
+      } finally {
+        if (!cancelled) setLoading(false)
+      }
+    }
+    bootstrap()
+    return () => { cancelled = true }
   }, [])
 
   const login = useCallback(async (email, password) => {
     const r = await apiClient.post('/auth/login', { email, password })
-    setUser(r.data.user)
-    return r.data.user
+    const { user, accessToken, refreshToken } = r.data
+    await tokenStore.set({ accessToken, refreshToken })
+    setUser(user)
+    return user
   }, [])
 
   const logout = useCallback(async () => {
     try {
-      await apiClient.post('/auth/logout')
+      const refreshToken = isNative() ? await tokenStore.refreshToken() : undefined
+      await apiClient.post('/auth/logout', refreshToken ? { refreshToken } : {})
+    } catch {
+      // Always clear local session even if the server call fails.
     } finally {
+      await tokenStore.clear()
       setUser(null)
     }
   }, [])

@@ -14,12 +14,31 @@ const enquiryService = {
     return { id };
   },
 
-  async list({ status, page, limit, offset }) {
+  async list(filters) {
+    const { page, limit } = filters;
     const [items, total] = await Promise.all([
-      enquiryRepository.list({ status, limit, offset }),
-      enquiryRepository.count({ status }),
+      enquiryRepository.list(filters),
+      enquiryRepository.count(filters),
     ]);
     return { items, total, page, limit };
+  },
+
+  /** Full detail for the admin panel: enquiry + quote items + admin notes. */
+  async detail(id) {
+    const enquiry = await enquiryRepository.findById(id);
+    if (!enquiry) throw new AppError('Enquiry not found', 404, 'NOT_FOUND');
+    const [items, notes] = await Promise.all([
+      enquiryRepository.findItems(id),
+      enquiryRepository.listNotes(id),
+    ]);
+    return { ...enquiry, items, notes };
+  },
+
+  async addNote(id, note, author) {
+    const exists = await enquiryRepository.findById(id);
+    if (!exists) throw new AppError('Enquiry not found', 404, 'NOT_FOUND');
+    const noteId = await enquiryRepository.addNote(id, note, author);
+    return { id: noteId, enquiry_id: Number(id), note, author: author || null };
   },
 
   async updateStatus(id, status) {

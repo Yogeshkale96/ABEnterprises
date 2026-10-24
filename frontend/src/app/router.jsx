@@ -1,4 +1,4 @@
-import { createBrowserRouter } from 'react-router-dom'
+import { createBrowserRouter, Navigate } from 'react-router-dom'
 import MainLayout from '../components/layout/MainLayout.jsx'
 import LandingPage from '../pages/LandingPage.jsx'
 import HomePage from '../pages/HomePage.jsx'
@@ -19,7 +19,10 @@ import PrivacyPolicyPage from '../pages/PrivacyPolicyPage.jsx'
 import TermsPage from '../pages/TermsPage.jsx'
 import NotFoundPage from '../pages/NotFoundPage.jsx'
 import AdminLoginPage from '../features/admin/AdminLoginPage.jsx'
-import AdminDashboardPage from '../features/admin/AdminDashboardPage.jsx'
+import AdminLayout from '../features/admin/AdminLayout.jsx'
+import DashboardOverview from '../features/admin/DashboardOverview.jsx'
+import EnquiriesPage from '../features/admin/EnquiriesPage.jsx'
+import EnquiryDetailsPage from '../features/admin/EnquiryDetailsPage.jsx'
 import RequireAuth from '../features/auth/RequireAuth.jsx'
 
 export const router = createBrowserRouter([
@@ -48,7 +51,20 @@ export const router = createBrowserRouter([
   },
   { path: '/admin/login', element: <AdminLoginPage /> },
   {
+    path: '/admin',
     element: <RequireAuth />,
-    children: [{ path: '/admin/dashboard', element: <AdminDashboardPage /> }],
+    children: [
+      {
+        element: <AdminLayout />,
+        children: [
+          { index: true, element: <DashboardOverview /> },
+          { path: 'dashboard', element: <Navigate to="/admin" replace /> },
+          { path: 'contact-enquiries', element: <EnquiriesPage type="contact" /> },
+          { path: 'quote-requests', element: <EnquiriesPage type="quote" /> },
+          { path: 'enquiries', element: <EnquiriesPage type="all" /> },
+          { path: 'enquiries/:id', element: <EnquiryDetailsPage /> },
+        ],
+      },
+    ],
   },
 ])

@@ -11,8 +11,8 @@ import HeroServiceBadges from './HeroServiceBadges.jsx'
  * If the slide image file is missing it hides itself and the themed navy
  * gradient underneath keeps the text readable.
  */
-const WIPE_S = 1.4
-const CONTENT_DELAY_S = 1.2
+const WIPE_S = 0.8
+const CONTENT_DELAY_S = 0.3
 
 export default function HeroSlide({ slide, index, count, reduced }) {
   const [imgError, setImgError] = useState(false)
@@ -66,7 +66,7 @@ export default function HeroSlide({ slide, index, count, reduced }) {
         className="absolute inset-0"
         initial={reduced ? false : { opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, delay: reduced ? 0 : 0.7, ease: 'easeOut' }}
+        transition={{ duration: 0.6, delay: reduced ? 0 : 0.15, ease: 'easeOut' }}
       >
       <div
         aria-hidden="true"
@@ -96,7 +96,7 @@ export default function HeroSlide({ slide, index, count, reduced }) {
       />
       </motion.div>
 
-      <Container className="relative z-10 flex h-full items-center py-8 sm:py-10">
+      <Container className="relative z-10 flex h-full items-center py-6 sm:py-10">
         <div className={`max-w-xl ${textRight ? 'lg:ml-auto lg:text-right' : ''}`}>
           <motion.p
             {...fade(0.15)}
@@ -127,7 +127,7 @@ export default function HeroSlide({ slide, index, count, reduced }) {
 
           <motion.div
             {...fade(0.45)}
-            className={`mt-8 flex flex-wrap items-center gap-3.5 ${
+            className={`mt-6 flex flex-wrap items-center gap-3.5 sm:mt-8 ${
               textRight ? 'lg:justify-end' : ''
             }`}
           >
@@ -150,7 +150,7 @@ export default function HeroSlide({ slide, index, count, reduced }) {
 
           <motion.div
             {...fade(0.5)}
-            className={`mt-8 border-t border-white/15 pt-6 ${
+            className={`mt-6 border-t border-white/15 pt-4 sm:mt-8 sm:pt-6 ${
               textRight ? 'lg:flex lg:justify-end' : ''
             }`}
           >
