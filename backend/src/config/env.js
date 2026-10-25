@@ -1,7 +1,14 @@
 require('dotenv').config();
 
-const required = ['DB_HOST', 'DB_NAME', 'DB_USER', 'JWT_SECRET'];
+const required = ['DB_HOST', 'DB_NAME', 'DB_USER'];
 const missing = required.filter((key) => !process.env[key]);
+// JWT_SECRET is only a legacy fallback — JWT_ACCESS_SECRET satisfies it.
+if (!process.env.JWT_ACCESS_SECRET && !process.env.JWT_SECRET) {
+  missing.push('JWT_ACCESS_SECRET');
+}
+if (!process.env.JWT_REFRESH_SECRET) {
+  missing.push('JWT_REFRESH_SECRET');
+}
 
 if (missing.length > 0 && process.env.NODE_ENV !== 'test') {
   // Warn rather than crash so the server can still boot for health checks.
