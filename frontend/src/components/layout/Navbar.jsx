@@ -56,7 +56,7 @@ export default function Navbar() {
         className="mx-auto flex h-16 max-w-7xl items-center gap-3 pl-2 pr-4 sm:pl-3 sm:pr-6 lg:h-[72px] lg:gap-5 lg:pl-4 lg:pr-6"
         aria-label="Main navigation"
       >
-        <Logo to="/home" className="h-16 md:h-16 lg:h-[72px]" />
+        <Logo to="/home" className="h-12 sm:h-16 lg:h-[72px]" />
 
         {/* Desktop search — sits just left of the nav tabs */}
         <div className="ml-auto mr-4 hidden min-w-0 w-[260px] md:block lg:mr-6">

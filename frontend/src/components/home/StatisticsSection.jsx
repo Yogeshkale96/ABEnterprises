@@ -48,7 +48,7 @@ function Stat({ value, suffix, label, icon, navy, animate }) {
       ref={ref}
       variants={itemVariants}
       whileHover={animate ? { y: -4 } : undefined}
-      className={`relative flex items-center gap-4 rounded-2xl border px-5 py-4 sm:px-6 sm:py-5 shadow-card transition-shadow duration-300 hover:shadow-card-hover ${
+      className={`relative flex flex-col items-start gap-3 rounded-2xl border px-4 py-4 shadow-card transition-shadow duration-300 hover:shadow-card-hover sm:flex-row sm:items-center sm:gap-4 sm:px-6 sm:py-5 ${
         navy
           ? 'border-navy-900/20 bg-gradient-to-br from-navy-900 via-blue-900 to-navy-800 text-white'
           : 'border-navy-900/10 bg-white'
@@ -69,7 +69,7 @@ function Stat({ value, suffix, label, icon, navy, animate }) {
           <span className={navy ? 'text-cyan-400' : 'text-accent-yellow'}>{suffix}</span>
         </p>
         <p
-          className={`mt-0.5 text-[11px] font-semibold uppercase tracking-wider ${
+          className={`mt-0.5 break-words text-[11px] font-semibold uppercase tracking-wider ${
             navy ? 'text-white/70' : 'text-ink-soft'
           }`}
         >

@@ -6,7 +6,7 @@ export default function TopBar() {
   const { contact, social } = siteConfig
 
   return (
-    <div className="bg-navy-950 text-white">
+    <div className="hidden bg-navy-950 text-white sm:block">
       <div className="mx-auto flex max-w-7xl flex-wrap items-center justify-between gap-x-6 gap-y-1 px-4 py-1.5 text-xs sm:px-6 lg:px-8">
         {/* Left — location only */}
         <span className="inline-flex items-center gap-1.5 text-white/85">

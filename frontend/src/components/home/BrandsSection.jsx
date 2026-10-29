@@ -67,8 +67,15 @@ export default function BrandsSection() {
           from { transform: translateX(-50%); }
           to { transform: translateX(0); }
         }
-        .ab-marquee-track { animation: ab-marquee-ltr 36s linear infinite; }
-        .ab-marquee:hover .ab-marquee-track { animation-play-state: paused; }
+        .ab-marquee-track { animation: ab-marquee-ltr 60s linear infinite; }
+        /* Mouse: pause on hover. Touch: pause only while the finger is down —
+           :hover would stick and leave the marquee paused after release. */
+        @media (hover: hover) {
+          .ab-marquee:hover .ab-marquee-track { animation-play-state: paused; }
+        }
+        @media (hover: none) {
+          .ab-marquee:active .ab-marquee-track { animation-play-state: paused; }
+        }
         @media (prefers-reduced-motion: reduce) {
           .ab-marquee-track { animation-play-state: paused; }
         }

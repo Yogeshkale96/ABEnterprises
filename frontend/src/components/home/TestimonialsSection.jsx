@@ -16,7 +16,14 @@ export default function TestimonialsSection({ testimonials }) {
           to { transform: translateX(-50%); }
         }
         .ab-testimonials-track { animation: ab-marquee-rtl 40s linear infinite; }
-        .ab-testimonials:hover .ab-testimonials-track { animation-play-state: paused; }
+        /* Mouse: pause on hover. Touch: pause only while the finger is down —
+           :hover would stick and leave the marquee paused after release. */
+        @media (hover: hover) {
+          .ab-testimonials:hover .ab-testimonials-track { animation-play-state: paused; }
+        }
+        @media (hover: none) {
+          .ab-testimonials:active .ab-testimonials-track { animation-play-state: paused; }
+        }
         @media (prefers-reduced-motion: reduce) {
           .ab-testimonials-track { animation-play-state: paused; }
         }

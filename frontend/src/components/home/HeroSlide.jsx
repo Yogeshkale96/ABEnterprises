@@ -107,7 +107,7 @@ export default function HeroSlide({ slide, index, count, reduced }) {
 
           <motion.h2
             {...fade(0.25)}
-            className="mt-5 text-[clamp(2rem,4.2vw,3.75rem)] font-extrabold leading-[1.1] tracking-tight text-white [text-shadow:0_2px_16px_rgba(4,21,46,0.45)]"
+            className="mt-5 text-[clamp(1.75rem,4.2vw,3.75rem)] font-extrabold leading-[1.1] tracking-tight text-white [text-shadow:0_2px_16px_rgba(4,21,46,0.45)]"
           >
             {slide.headingBefore}
             <span className="bg-gradient-to-r from-cyan-400 to-blue-700 bg-clip-text text-transparent sm:block">
