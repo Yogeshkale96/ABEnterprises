@@ -59,7 +59,7 @@ export default function Navbar() {
         <Logo to="/home" className="h-12 sm:h-16 lg:h-[72px]" />
 
         {/* Desktop search — sits just left of the nav tabs */}
-        <div className="ml-auto mr-4 hidden min-w-0 w-[260px] md:block lg:mr-6">
+        <div className="ml-auto mr-4 hidden min-w-0 w-[220px] md:block lg:mr-6">
           <SearchBar />
         </div>
 

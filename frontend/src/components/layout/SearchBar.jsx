@@ -109,7 +109,7 @@ export default function SearchBar({ autoFocus = false, onNavigate }) {
     <div ref={boxRef} className="relative w-full" role="search">
       <div className="group/search relative flex items-center">
         <Search
-          className="pointer-events-none absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-ink-soft transition-colors group-focus-within/search:text-blue-700"
+          className="pointer-events-none absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-ink-soft transition-colors group-focus-within/search:text-blue-700"
           aria-hidden="true"
         />
         <input
@@ -129,7 +129,7 @@ export default function SearchBar({ autoFocus = false, onNavigate }) {
           aria-controls="search-suggestions"
           aria-activedescendant={highlight >= 0 ? `search-opt-${highlight}` : undefined}
           role="combobox"
-          className="w-full rounded-full border border-line bg-white py-2.5 pl-10 pr-[4.5rem] text-sm text-ink shadow-sm transition-all duration-200 placeholder:text-ink-soft/70 hover:border-cyan-400 hover:shadow-md focus:border-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700/15 [&::-webkit-search-cancel-button]:hidden"
+          className="w-full rounded-full border border-line bg-white py-2 pl-9 pr-[4.5rem] text-sm text-ink shadow-sm transition-all duration-200 placeholder:text-ink-soft/70 hover:border-cyan-400 hover:shadow-md focus:border-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-700/15 [&::-webkit-search-cancel-button]:hidden"
         />
         {query && (
           <button
