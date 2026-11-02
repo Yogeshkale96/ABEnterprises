@@ -33,11 +33,13 @@ const siteConfig = {
     { label: 'Client Satisfaction', value: 95, suffix: '%', icon: 'HeartHandshake' },
   ],
   api: {
-    // Explicit VITE_API_BASE_URL wins; dev uses the Vite proxy (/api/v1 →
-    // localhost:5000); production builds default to the deployed backend.
+    // Explicit env wins (VITE_API_BASE_URL, or VITE_API_URL as an alias); dev
+    // uses the Vite proxy (/api/v1 → localhost:5000); production builds
+    // default to the deployed Render backend.
     baseUrl:
       import.meta.env.VITE_API_BASE_URL ||
-      (import.meta.env.DEV ? '/api/v1' : 'https://abenterprisess.onrender.com/api/v1'),
+      import.meta.env.VITE_API_URL ||
+      (import.meta.env.DEV ? '/api/v1' : 'https://abenterprises-5.onrender.com/api/v1'),
   },
 };
 
