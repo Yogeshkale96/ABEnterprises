@@ -44,26 +44,46 @@ const values = [
   { Icon: HeartHandshake, title: 'Our Promise', text: 'Genuine products, transparent pricing and support you can count on.' },
 ]
 
-// Team photos live in public/ourtean/ with their original filenames.
-const teamImg = (name) => `${import.meta.env.BASE_URL}ourtean/${encodeURIComponent(name)}`
+// Team photos live under public/ — each entry keeps its full relative path
+// (encodeURIComponent per segment so names with spaces still resolve).
+const teamImg = (path) =>
+  `${import.meta.env.BASE_URL}${path.split('/').map(encodeURIComponent).join('/')}`
 const TEAM = [
   {
-    photo: 'amit fulzele.jpeg',
+    photo: 'ourtean/amit fulzele.jpeg',
     name: 'Amit Fulzele',
     role: 'Founder & Owner',
     quote: 'Every client deserves honest advice, genuine products and support that never disappears after the sale.',
   },
   {
-    photo: 'Pranjali Thakre.jpeg',
+    photo: 'ourtean/Pranjali Thakre.jpeg',
     name: 'Pranjali Thakre',
     role: 'Web Developer',
     quote: 'A good website should be fast, clean and easy for every visitor — that is the standard we build to.',
   },
   {
-    photo: 'Abhijeet Fulzele.jpeg',
+    photo: 'ourtean/Abhijeet Fulzele.jpeg',
     name: 'Abhijeet Fulzele',
     role: 'Technician',
     quote: 'Systems that are installed and maintained well simply last longer — prevention beats repair.',
+  },
+  {
+    photo: 'images/team/member-4.jpg',
+    name: 'Vikram Singh',
+    role: 'Network Engineer',
+    quote: 'A stable network is invisible — it just works, and that is exactly how it should be.',
+  },
+  {
+    photo: 'images/team/member-5.jpg',
+    name: 'Sneha Joshi',
+    role: 'Solutions Consultant',
+    quote: 'The right product at the right budget — we recommend what fits, not what costs more.',
+  },
+  {
+    photo: 'images/team/member-6.jpg',
+    name: 'Arjun Desai',
+    role: 'AMC & Maintenance Lead',
+    quote: 'Systems that are maintained well simply last longer — prevention beats repair.',
   },
 ]
 
