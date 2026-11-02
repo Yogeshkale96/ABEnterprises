@@ -44,44 +44,26 @@ const values = [
   { Icon: HeartHandshake, title: 'Our Promise', text: 'Genuine products, transparent pricing and support you can count on.' },
 ]
 
-// Placeholder team — replace names/roles/quotes with verified staff details before launch.
-const teamImg = (name) => `${import.meta.env.BASE_URL}images/team/${name}`
+// Team photos live in public/ourtean/ with their original filenames.
+const teamImg = (name) => `${import.meta.env.BASE_URL}ourtean/${encodeURIComponent(name)}`
 const TEAM = [
   {
-    photo: 'member-1.jpg',
-    name: 'Rahul Sharma',
-    role: 'Full Stack Developer',
-    quote: 'We build solutions end to end — from the database to the interface, everything works as one system.',
+    photo: 'amit fulzele.jpeg',
+    name: 'Amit Fulzele',
+    role: 'Founder & Owner',
+    quote: 'Every client deserves honest advice, genuine products and support that never disappears after the sale.',
   },
   {
-    photo: 'member-2.jpg',
-    name: 'Amit Patel',
+    photo: 'Pranjali Thakre.jpeg',
+    name: 'Pranjali Thakre',
     role: 'Web Developer',
     quote: 'A good website should be fast, clean and easy for every visitor — that is the standard we build to.',
   },
   {
-    photo: 'member-3.jpg',
-    name: 'Priya Verma',
-    role: 'Technical Support Engineer',
-    quote: 'Good support is fast, honest and consistent — our clients should never feel stuck.',
-  },
-  {
-    photo: 'member-4.jpg',
-    name: 'Vikram Singh',
-    role: 'Network Engineer',
-    quote: 'A stable network is invisible — it just works, and that is exactly how it should be.',
-  },
-  {
-    photo: 'member-5.jpg',
-    name: 'Sneha Joshi',
-    role: 'Solutions Consultant',
-    quote: 'The right product at the right budget — we recommend what fits, not what costs more.',
-  },
-  {
-    photo: 'member-6.jpg',
-    name: 'Arjun Desai',
-    role: 'AMC & Maintenance Lead',
-    quote: 'Systems that are maintained well simply last longer — prevention beats repair.',
+    photo: 'Abhijeet Fulzele.jpeg',
+    name: 'Abhijeet Fulzele',
+    role: 'Technician',
+    quote: 'Systems that are installed and maintained well simply last longer — prevention beats repair.',
   },
 ]
 
